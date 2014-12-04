@@ -1,4 +1,6 @@
-#include <msp430.h> 
+#include <msp430.h>
+#include "head07.h"
+#include "Library/Robot9_IR_Library.h"
 
 /*
  * main.c
@@ -27,11 +29,11 @@ void main(void) {
 		while(ADC10CTL1 & ADC10BUSY);							// Wait for conversion to complete
 		sample = ADC10MEM;									// collect that 10-bit value
 
-		if (sample < 0x0185){
-			P1OUT |= BIT0;
+		if (sample < RIGHT_WALL){
+			RED_ON;
 		}
 		else {
-			P1OUT &= ~BIT0;
+			RED_OFF;
 		}
 
 	} // end infinite loop
