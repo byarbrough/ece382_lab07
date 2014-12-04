@@ -8,7 +8,7 @@ ece382_lab07
 The first thing that I am going to do for my prelab is remove the IR sensor that I used for the last lab. I will then use the DMM to verify that all of the sensors are working correctly. Following this I will be ready to begin wiring and coding and all kinds of fun stuff.
 
 ###Code
-Most of the neaccesary code is already provided [here](http://ecse.bd.psu.edu/cmpen352/lecture/code/lec36.c), so I will mostly just use that. I plan on making very nice methods so that I can incorporate it into a library. Doing that should grant an easier time during Lab 8.
+Most of the necessary code is already provided [here](http://ecse.bd.psu.edu/cmpen352/lecture/code/lec36.c), so I will mostly just use that. I plan on making very nice methods so that I can incorporate it into a library. Doing that should grant an easier time during Lab 8.
 
 ###Making it "For Realz"
 First, yes, I checked all of my sensors and wiring and they work pristinely.
@@ -22,3 +22,4 @@ Yes, this is somewhat coarse. For one, I did all of these in the maze closest to
 For turning the LED on or off, having a threshold voltage is critical. The code that I mentioned earlier already is configured to toggle 1.0 based on analog input on 1.4. That means that all there really is left to do is change the if statement to reflect 1.9 V. I have to do a little math to do this, but it isn't too bad.
 
 ###ADC Math
+The converter uses ten bits. That means that I have 2^10, or 1024 quantization levels. Thus, each level accounts for 5V/1024 = _4.89 mV per level_. From this, I can determine my expected level to be: (input - min)/dV. So, for my threshold voltage of 1.9 V, I am looking at 388.5, or 0x185. Let's throw that in the program and try it out! 
