@@ -13,9 +13,12 @@ void main(void) {
 	BCSCTL1 = CALBC1_8MHZ;				// 8MHz clock
 	DCOCTL = CALDCO_8MHZ;
 
-	P1DIR = BIT0 | BIT6;				// Set the red LED as output
+	P1DIR = BIT0 | BIT6;				// Set the LED as output
+	P1OUT &= ~(BIT0 | BIT6);
 
 	while(1) {
+
+		//P1DIR = BIT0 | BIT6;
 
 		if (getRightVal() < RIGHT_WALL_NR){
 			RED_ON;
@@ -30,6 +33,9 @@ void main(void) {
 		else {
 			GREEN_OFF;
 		}
+
+		_delay_cycles(1000);
+
 
 	} // end infinite loop
 
