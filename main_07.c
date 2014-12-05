@@ -2,11 +2,12 @@
 #include "head07.h"
 #include "Library/Robot9_IR_Library.h"
 
+unsigned short sample;
+
 /*
  * main.c
  */
 void main(void) {
-
 	IFG1=0; 							// clear interrupt flag1
 	WDTCTL = WDTPW + WDTHOLD;			// disable WDT
 
@@ -17,8 +18,6 @@ void main(void) {
 	P1OUT &= ~(BIT0 | BIT6);
 
 	while(1) {
-
-		//P1DIR = BIT0 | BIT6;
 
 		if (getRightVal() < RIGHT_WALL_NR){
 			RED_ON;
@@ -35,6 +34,8 @@ void main(void) {
 		}
 
 		_delay_cycles(1000);
+
+		sample = getRightVal();
 
 
 	} // end infinite loop
