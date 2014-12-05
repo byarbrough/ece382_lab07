@@ -24,6 +24,13 @@ void main(void) {
 			RED_OFF;
 		}
 
+		if (getLeftVal() < LEFT_WALL_NR){
+			GREEN_ON;
+		}
+		else {
+			GREEN_OFF;
+		}
+
 	} // end infinite loop
 
 } // end main
