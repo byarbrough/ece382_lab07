@@ -13,9 +13,9 @@
 #ifndef ROBOT9_IR_LIBRARY_H_
 #define ROBOT9_IR_LIBRARY_H_
 
-#define 	FRONT_WALL	0x0185
-#define		LEFT_WALL	0x0185
-#define		RIGHT_WALL	0x0185
+#define 	FRONT_WALL_NR	0x0185
+#define		LEFT_WALL_NR	0x0185
+#define		RIGHT_WALL_NR	0x0185
 
 unsigned short	getRightVal();
 unsigned short	getLeftVal();
