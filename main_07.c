@@ -33,9 +33,10 @@ void main(void) {
 			GREEN_OFF;
 		}
 
+
 		_delay_cycles(1000);
 
-		sample = getRightVal();
+		sample = getFrontVal();
 
 
 	} // end infinite loop
