@@ -36,6 +36,55 @@ While I was in the 321 lab, I also grabbed some 1 nF capacitors and stuck them b
 From here I just had to make all three sensors work simultaneously. I realized that to do this I might as well make a library, which I did. It contains its own header and implementation file, as well as a Readme that details its functions. I used it to implement the required functionality, and plan on using it for the maze as well.
 
 ##A Functionality
+I characterized the three sensors according to these tables and charts.
+
+__FRONT SENSOR__
+
+| Distance | Value 1 | Value 2 | Average | Convert | Hex |
+|:--------:|:-------:|:-------:|---------|---------|-----|
+| 12       |  0.251  |  0.260  | 0.256   | 80      | 50  |
+| 11       |  0.266  |  0.275  | 0.271   | 84      | 54  |
+| 10       |  0.287  |  0.293  | 0.290   | 90      | 5A  |
+| 9        | 0.324   | 0.333   | 0.329   | 102     | 66  |
+| 8        | 0.369   | 0.371   | 0.370   | 115     | 73  |
+| 7        | 0.439   | 0.439   | 0.439   | 137     | 89  |
+| 6        | 0.519   | 0.526   | 0.523   | 163     | A3  |
+| 5        | 0.619   | 0.630   | 0.625   | 194     | C2  |
+| 4        | 0.759   | 0.773   | 0.766   | 238     | EE  |
+| 3        | 0.806   | 0.889   | 0.848   | 263     | 107 |
+| 2        | 0.543   | 0.670   | 0.607   | 189     | BD  |
+| 1        | 0.124   | 0.154   | 0.139   | 44      | 2C  |
+
+__RIGHT SENSOR__
+
+| Distance | Value 1 | Value 2 | Average | Convert | Hex |
+|:--------:|:-------:|:-------:|---------|---------|-----|
+| 12       |   0.90  |   0.87  | 0.885   | 275     | 113 |
+| 11       |   1.00  |   0.91  | 0.954   | 297     | 129 |
+| 10       |   1.03  |   1.02  | 1.025   | 319     | 13F |
+| 9        | 1.16    | 1.16    | 1.160   | 360     | 168 |
+| 8        | 1.36    | 1.34    | 1.350   | 419     | 1A3 |
+| 7        | 1.68    | 1.55    | 1.615   | 502     | 1F6 |
+| 6        | 1.99    | 2.00    | 1.995   | 620     | 26C |
+| 5        | 2.60    | 2.52    | 2.560   | 795     | 31B |
+
+__LEFT SENSOR__
+
+| Distance | Value 1 | Value 2 | Average | Convert | Hex |
+|:--------:|:-------:|:-------:|---------|---------|-----|
+| 12       |  0.412  |  0.429  | 0.421   | 131     | 83  |
+| 11       |  0.428  |  0.432  | 0.430   | 134     | 86  |
+| 10       |  0.475  |  0.481  | 0.478   | 149     | 95  |
+| 9        | 0.548   | 0.539   | 0.544   | 169     | A9  |
+| 8        | 0.663   | 0.609   | 0.636   | 198     | C6  |
+| 7        | 0.765   | 0.741   | 0.753   | 234     | EA  |
+| 6        | 0.948   | 0.877   | 0.913   | 284     | 11C |
+| 5        | 1.23    | 1.25    | 1.240   | 385     | 181 |
+| 4        | 1.75    | 1.81    | 1.778   | 552     | 228 |
+| 3        | 2.74    | 2.65    | 2.695   | 837     | 345 |
+
+There are a couply of things worth noting from these table. First, different walls and ambient lighting definitely have an effect on values. Second, the readings become unreliable closer than 3 inches or so because either the sensors max our at 0x3FF or the numbers drop off because the sleeve on the sensor blocks too much light.
+Also, note that the lines of best fit are most likely logrithmic, but they can be approximated well with an second order polynomial. Because the MSP430 cannot do floating point or natural log, having these equations are much more useful for calculating exact distances than ln() would be.
 
 ##Documentation
 Other than the brief comment about the resistor that I mentioned, I knocked this one out all by myself.
