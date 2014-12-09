@@ -36,6 +36,7 @@ While I was in the 321 lab, I also grabbed some 1 nF capacitors and stuck them b
 From here I just had to make all three sensors work simultaneously. I realized that to do this I might as well make a library, which I did. It contains its own header and implementation file, as well as a Readme that details its functions. I used it to implement the required functionality, and plan on using it for the maze as well.
 
 ##A Functionality
+The first time I attempted to characterizet the sensors, I got a funny linear relationship. So I added some electirc tape blinders to the sensors and tried again.
 I characterized the three sensors according to these tables and charts.
 
 __FRONT SENSOR__
@@ -55,6 +56,8 @@ __FRONT SENSOR__
 | 2        | 0.543   | 0.670   | 0.607   | 189     | BD  |
 | 1        | 0.124   | 0.154   | 0.139   | 44      | 2C  |
 
+![alt text](https://raw.githubusercontent.com/byarbrough/ece382_lab07/master/Images/front_chart.PNG "Fronnt")
+
 __RIGHT SENSOR__
 
 | Distance | Value 1 | Value 2 | Average | Convert | Hex |
@@ -67,6 +70,8 @@ __RIGHT SENSOR__
 | 7        | 1.68    | 1.55    | 1.615   | 502     | 1F6 |
 | 6        | 1.99    | 2.00    | 1.995   | 620     | 26C |
 | 5        | 2.60    | 2.52    | 2.560   | 795     | 31B |
+
+![alt text](https://raw.githubusercontent.com/byarbrough/ece382_lab07/master/Images/right_chart.PNG "Right")
 
 __LEFT SENSOR__
 
@@ -83,8 +88,12 @@ __LEFT SENSOR__
 | 4        | 1.75    | 1.81    | 1.778   | 552     | 228 |
 | 3        | 2.74    | 2.65    | 2.695   | 837     | 345 |
 
+![alt text](https://raw.githubusercontent.com/byarbrough/ece382_lab07/master/Images/left_chart.PNG "Left")
+
 There are a couply of things worth noting from these table. First, different walls and ambient lighting definitely have an effect on values. Second, the readings become unreliable closer than 3 inches or so because either the sensors max our at 0x3FF or the numbers drop off because the sleeve on the sensor blocks too much light.
 Also, note that the lines of best fit are most likely logrithmic, but they can be approximated well with an second order polynomial. Because the MSP430 cannot do floating point or natural log, having these equations are much more useful for calculating exact distances than ln() would be.
+
+Also, the right sensor is much more sensitive than the other two sesnors. This means that I will have to do some extra calibration if I want to directly compare the two sensor readings... or I might just try a voltage divider. 
 
 ##Documentation
 Other than the brief comment about the resistor that I mentioned, I knocked this one out all by myself.
